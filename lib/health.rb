@@ -16,6 +16,10 @@ module Health
       checker.check(name_or_object, &block)
     end
 
+    def has_check?(name)
+      checker.has_check?(name)
+    end
+
     def perform(name)
       checker.perform(name)
     end
