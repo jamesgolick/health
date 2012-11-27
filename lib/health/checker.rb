@@ -4,16 +4,16 @@ module Health
       @checks ||= {}
     end
 
-    def configure(&block)
-      instance_eval(&block)
-    end
-
     def check(name_or_object, &block)
       if name_or_object.respond_to?(:call)
-        checks[name_or_object.name] = name_or_object
+        checks[name_or_object.name.to_sym] = name_or_object
       else
-        checks[name_or_object] = block
+        checks[name_or_object.to_sym] = block
       end
+    end
+
+    def has_check?(name)
+      checks.has_key?(name.to_sym)
     end
 
     def names

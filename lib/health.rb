@@ -9,7 +9,11 @@ module Health
     end
 
     def configure(&block)
-      checker.configure(&block)
+      instance_eval(&block)
+    end
+
+    def check(name_or_object, &block)
+      checker.check(name_or_object, &block)
     end
 
     def perform(name)

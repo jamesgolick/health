@@ -15,7 +15,7 @@ module Health
     end
 
     get "/:name" do
-      pass if !Health.names.include?(params[:name].to_sym)
+      pass if !Health.has_check?(params[:name])
 
       value = Health.perform(params[:name])
       status = value[:ok] ? 200 : 500
